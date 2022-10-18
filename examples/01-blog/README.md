@@ -9,9 +9,18 @@ Models a blogging platform with Stories, Users and hierarchical comments.
 php -S localhost:8080 graphql.php
 ```
 
+### Alternatively, running with Docker from the current directory:
+```bash
+# Install composer dependencies if they haven't been yet
+docker run --rm --interactive --tty --volume $PWD/../..:/app --user $(id -u):$(id -g) composer install
+
+# Run the application
+docker run --rm -v $PWD/../..:/app -w /app -p 8080:80 php:8-cli php -S 0.0.0.0:80 examples/01-blog/graphql.php
+```
+
 ### Try query
 
-```
+```bash
 curl -d '{"query": "query { hello }" }' -H "Content-Type: application/json" http://localhost:8080
 ```
 
